@@ -1,0 +1,45 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    &-top {
+        height: 44px;
+        font-size: 12px;
+        padding: 0 150px;
+    }
+
+    &-bottom {
+        height: 92px;
+        border-bottom: 1px solid #CACDD8;
+        padding: 0 100px;
+
+        &-nav {
+            font-size: 14px;
+            gap: 25px;
+
+            &-item {
+                cursor: pointer;
+            }
+        }
+
+        &-action {
+            gap: 28px;
+
+            &-avatar {
+                width: 36px;
+                height: 36px;
+                border-radius: 50px;
+                // border: 1px solid;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
