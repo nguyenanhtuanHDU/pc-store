@@ -1,0 +1,33 @@
+.container{
+    padding-top: 21px;
+}
+
+.nav {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.heading {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    margin-bottom: 21px;
+}
+
+.form {
+    padding: 0 50px;
+    &-heading{
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 27px;
+    }
+    &-title{
+        line-height: 67px;
+        font-size: 14px;
+    }
+}
+
+.item {
+    padding: 37px 58px;
+    background: #F5F7FF;
+}
