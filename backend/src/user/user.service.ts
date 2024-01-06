@@ -25,6 +25,7 @@ export class UserService {
             }
             const hashPassword = await bcrypt.hash(user.password, 10);
             user.password = hashPassword
+            user.roles = ['user']
             const createdUser = await this.userModel.create(user)
             return await createdUser.save()
         } catch (error) {

@@ -13,4 +13,6 @@ export class CreateUserDTO {
   //   @Length(6)
   @Expose()
   password: string;
+
+  roles: string[]
 }
