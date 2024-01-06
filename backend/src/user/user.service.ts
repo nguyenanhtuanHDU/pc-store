@@ -13,6 +13,10 @@ export class UserService {
         return this.userModel.find()
     }
 
+    async getSingle(data: Partial<User>): Promise<User> {
+        return this.userModel.findOne(data)
+    }
+
     async create(user: CreateUserDTO): Promise<User> {
         try {
             const userFind = await this.userModel.findOne({ username: user.username })
