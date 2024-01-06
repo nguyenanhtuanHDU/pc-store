@@ -1,4 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Subject, catchError, of, takeUntil } from 'rxjs';
+import { MainService } from 'src/app/services/main.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,9 +13,40 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class SignInComponent {
   @ViewChild("input") input!: ElementRef;
 
-  constructor() {
+  constructor(
+    private mainService: MainService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     setTimeout(() => {
       this.input.nativeElement.focus();
     }, 300);
+  }
+
+  form = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  });
+  destroy = new Subject()
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.mainService.auth.login(this.form.value).pipe(
+        takeUntil(this.destroy),
+        catchError((err) => {
+          this.toastr.error(err?.error?.message ?? 'Login error');
+          return of(null);
+        })
+      ).subscribe(
+        (res) => {
+          if (res) {
+            this.toastr.success(res.message ?? 'Login success');
+            this.router.navigate(['/'])
+          }
+        }
+      );
+    } else {
+      this.toastr.error('Form invalid')
+    }
   }
 }

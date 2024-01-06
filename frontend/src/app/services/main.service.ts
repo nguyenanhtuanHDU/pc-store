@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, distinctUntilChanged, tap } from 'rxjs';
 import { IUser } from '../shared/models/user.model';
 import { IResponse } from '../shared/models/response.model';
+import { ILogin } from '../shared/models/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,7 @@ export class MainService extends BaseService {
   }
 
   auth = {
+    login: (command: ILogin) => this.http.post<IResponse<IUser>>(this.createUrl(['auth', 'login']), command),
     loginGoogle: () => this.http.get(this.createUrl(['auth', 'google']))
   }
 
@@ -42,9 +44,7 @@ export class MainService extends BaseService {
     ).pipe(tap((res) => {
       this.listUserSubject.next(res.data)
     })),
-    create: (command: Partial<IUser>) => this.http.post<IResponse<IUser>>(this.createUrl(['users']), command).pipe(tap((res) => {
-      // this.listUserSubject.next([...this.listUserSubject.getValue(), res.data])
-    })),
+    create: (command: Partial<IUser>) => this.http.post<IResponse<IUser>>(this.createUrl(['users']), command),
     update: (id: string, command: Partial<IUser>, index: number) => this.http.put<IResponse<IUser>>(this.createUrl(['users', id]), command).pipe(tap((res) => {
       this.listUserSubject.getValue().splice(index, 1, res.data)
       this.listUserSubject.next([...this.listUserSubject.getValue()])
