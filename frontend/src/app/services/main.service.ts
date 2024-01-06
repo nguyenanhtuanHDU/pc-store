@@ -30,7 +30,7 @@ export class MainService extends BaseService {
   }
 
   auth = {
-    login: (command: ILogin) => this.http.post<IResponse<IUser>>(this.createUrl(['auth', 'login']), command),
+    login: (command: ILogin) => this.http.post<IResponse<any>>(this.createUrl(['auth', 'login']), command),
     loginGoogle: () => this.http.get(this.createUrl(['auth', 'google']))
   }
 

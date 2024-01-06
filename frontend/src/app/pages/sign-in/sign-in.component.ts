@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, catchError, of, takeUntil } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class SignInComponent {
 
   constructor(
     private mainService: MainService,
+    private authService: AuthService,
     private toastr: ToastrService,
     private router: Router
   ) {
@@ -40,6 +42,7 @@ export class SignInComponent {
       ).subscribe(
         (res) => {
           if (res) {
+            this.authService.setAccessToken(res.data.accessToken)
             this.toastr.success(res.message ?? 'Login success');
             this.router.navigate(['/'])
           }

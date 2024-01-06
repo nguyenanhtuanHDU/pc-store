@@ -11,12 +11,11 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() authLogin: AuthLoginDTO, @Res() res: Response) {
-        await this.authService.login(authLogin)
         const response: IResponse<User[]> = {
             status: HttpStatus.OK,
             message: 'Login success',
             subMessage: 'Success',
-            data: null
+            data: await this.authService.login(authLogin)
         }
         res.status(HttpStatus.OK).json(response)
     }

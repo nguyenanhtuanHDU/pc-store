@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 // import { WebsocketsModule } from './websockets/websockets.module';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -19,12 +20,12 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     ConfigModule.forRoot({ envFilePath: '.env' }),
     MongooseModule.forRoot(process.env.DB_URL),
-    // JwtModule.register({
-    //   global: true,
-    //   // secret: process.env.KEY_JWT,
-    //   secret: `${process.env.JWT_SECRET_KEY}`,
-    //   signOptions: { expiresIn: '3600s' },
-    // }),
+    JwtModule.register({
+      global: true,
+      // secret: process.env.JWT_SECRET,
+      secret: `${process.env.JWT_SECRET_KEY}`,
+      signOptions: { expiresIn: '3600s' },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

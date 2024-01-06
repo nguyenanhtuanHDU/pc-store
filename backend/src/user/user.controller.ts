@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { IResponse } from 'src/shared/models/response.interface';
-import { User } from './schema/user.schema';
+import { User } from './enities/user.schema';
 import { Response } from 'express';
 import { CreateUserDTO } from './dto/create-user.dto';
 

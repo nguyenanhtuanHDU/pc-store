@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,9 @@ import { provideToastr } from 'ngx-toastr';
   providers: [
     MainService,
     BaseService,
-    provideAnimations(), 
-    provideToastr(), 
+    CookieService,
+    provideAnimations(),
+    provideToastr(),
   ],
   bootstrap: [AppComponent]
 })
