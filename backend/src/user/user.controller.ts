@@ -13,8 +13,8 @@ export class UserController {
     async getAll(@Res() res: Response): Promise<any> {
         const response: IResponse<User[]> = {
             status: HttpStatus.OK,
-            message: 'Success',
-            subMessage: 'Get all success',
+            message: 'Get all user success',
+            subMessage: 'Success',
             data: await this.userService.getAll()
         }
         res.status(HttpStatus.OK).json(response)
@@ -26,8 +26,8 @@ export class UserController {
         await this.userService.create(user)
         const response: IResponse<User> = {
             status: HttpStatus.OK,
-            message: 'Success',
-            subMessage: 'Create success',
+            message: 'Create user success',
+            subMessage: 'Success',
             data: null
         }
         res.status(HttpStatus.OK).json(response)
@@ -37,10 +37,10 @@ export class UserController {
     async delete(@Res() res: Response, @Param('id') id: string) {
         const response: IResponse<User> = {
             status: HttpStatus.OK,
-            message: 'Success',
-            subMessage: 'Delete success',
+            message: 'Delete user success',
+            subMessage: 'Success',
             data: await this.userService.delete(id)
         }
         res.status(HttpStatus.OK).json(response)
     }
- }
+}

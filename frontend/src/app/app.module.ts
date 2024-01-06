@@ -12,6 +12,13 @@ import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './pages/home/home.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { MainService } from './services/main.service';
+import { BaseService } from './services/base.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -29,9 +36,18 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     MatButtonModule,
     MatSlideToggleModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    MainService,
+    BaseService,
+    provideAnimations(), 
+    provideToastr(), 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

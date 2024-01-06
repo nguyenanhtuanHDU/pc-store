@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sign-in',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  @ViewChild("input") input!: ElementRef;
 
+  constructor() {
+    setTimeout(() => {
+      this.input.nativeElement.focus();
+    }, 300);
+  }
 }

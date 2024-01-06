@@ -2,7 +2,7 @@ import { HttpStatus } from "@nestjs/common"
 
 export interface IResponse<T> {
     status: HttpStatus
-    message: 'Success' | 'Error'
-    subMessage: string
+    message: string
+    subMessage: 'Success' | 'Error'
     data: T
 } 
